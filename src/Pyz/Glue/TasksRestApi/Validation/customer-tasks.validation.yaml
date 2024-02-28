@@ -1,0 +1,39 @@
+tasks:
+    post:
+        title:
+            - NotBlank
+            - Length:
+                  min: 3
+                  max: 255
+        description:
+            - NotBlank
+        dueDate:
+            - NotBlank
+            - Date
+        status:
+            - NotBlank
+    patch:
+        fkCreator:
+            - NotBlank
+            - NotNull
+        title:
+            - NotBlank
+            - Length:
+                  min: 3
+                  max: 255
+        description:
+            - NotBlank
+        dueDate:
+            - NotBlank
+            - Date
+        status:
+            - NotBlank
+task-assign:
+    patch:
+        email:
+            - NotBlank
+            - Email
+task-tags:
+    patch:
+        tag:
+            - NotBlank
