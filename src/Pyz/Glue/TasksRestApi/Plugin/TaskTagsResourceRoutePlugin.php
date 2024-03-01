@@ -40,7 +40,7 @@ class TaskTagsResourceRoutePlugin extends AbstractPlugin implements ResourceRout
      */
     public function getResourceType(): string
     {
-        return TasksRestApiConfig::RESOURCE_CUSTOMER_TASK_TAGS;
+        return TasksRestApiConfig::RESOURCE_TASK_TAGS;
     }
 
     /**

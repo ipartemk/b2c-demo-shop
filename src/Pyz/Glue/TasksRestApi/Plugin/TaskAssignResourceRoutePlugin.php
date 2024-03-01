@@ -40,7 +40,7 @@ class TaskAssignResourceRoutePlugin extends AbstractPlugin implements ResourceRo
      */
     public function getResourceType(): string
     {
-        return TasksRestApiConfig::RESOURCE_CUSTOMER_TASK_ASSIGN;
+        return TasksRestApiConfig::RESOURCE_TASK_ASSIGN;
     }
 
     /**

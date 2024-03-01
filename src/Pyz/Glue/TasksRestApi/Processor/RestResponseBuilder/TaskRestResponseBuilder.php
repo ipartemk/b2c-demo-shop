@@ -137,7 +137,7 @@ class TaskRestResponseBuilder implements TaskRestResponseBuilderInterface
         $idTask = $taskTransfer->getIdTask();
 
         return $this->restResourceBuilder->createRestResource(
-            TasksRestApiConfig::RESOURCE_CUSTOMER_TASKS,
+            TasksRestApiConfig::RESOURCE_TASKS,
             $idTask,
             $restTaskAttributesTransfer,
         );

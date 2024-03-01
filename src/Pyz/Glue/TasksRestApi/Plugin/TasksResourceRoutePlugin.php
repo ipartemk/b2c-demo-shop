@@ -44,7 +44,7 @@ class TasksResourceRoutePlugin extends AbstractPlugin implements ResourceRoutePl
      */
     public function getResourceType(): string
     {
-        return TasksRestApiConfig::RESOURCE_CUSTOMER_TASKS;
+        return TasksRestApiConfig::RESOURCE_TASKS;
     }
 
     /**

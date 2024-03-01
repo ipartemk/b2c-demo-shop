@@ -14,17 +14,17 @@ class TasksRestApiConfig extends AbstractBundleConfig
     /**
      * @var string
      */
-    public const RESOURCE_CUSTOMER_TASKS = 'tasks';
+    public const RESOURCE_TASKS = 'tasks';
 
     /**
      * @var string
      */
-    public const RESOURCE_CUSTOMER_TASK_ASSIGN = 'task-assign';
+    public const RESOURCE_TASK_ASSIGN = 'task-assign';
 
     /**
      * @var string
      */
-    public const RESOURCE_CUSTOMER_TASK_TAGS = 'task-tags';
+    public const RESOURCE_TASK_TAGS = 'task-tags';
 
     /**
      * @var string
