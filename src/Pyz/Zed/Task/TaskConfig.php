@@ -11,4 +11,8 @@ use Spryker\Zed\Kernel\AbstractBundleConfig;
 
 class TaskConfig extends AbstractBundleConfig
 {
+    /**
+     * @var int
+     */
+    public const DEFAULT_PAGINATION_MAX_PER_PAGE = 4;
 }

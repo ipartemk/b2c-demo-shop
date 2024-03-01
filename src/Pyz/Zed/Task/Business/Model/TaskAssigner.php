@@ -21,23 +21,23 @@ class TaskAssigner implements TaskAssignerInterface
 {
     private CustomerFacadeInterface $customerFacade;
 
-    private TaskRepositoryInterface $customerTaskRepository;
+    private TaskRepositoryInterface $taskRepository;
 
-    private TaskEntityManagerInterface $customerTaskEntityManager;
+    private TaskEntityManagerInterface $taskEntityManager;
 
     /**
      * @param \Spryker\Zed\Customer\Business\CustomerFacadeInterface $customerFacade
-     * @param \Pyz\Zed\Task\Persistence\TaskRepositoryInterface $customerTaskRepository
-     * @param \Pyz\Zed\Task\Persistence\TaskEntityManagerInterface $customerTaskEntityManager
+     * @param \Pyz\Zed\Task\Persistence\TaskRepositoryInterface $taskRepository
+     * @param \Pyz\Zed\Task\Persistence\TaskEntityManagerInterface $taskEntityManager
      */
     public function __construct(
         CustomerFacadeInterface $customerFacade,
-        TaskRepositoryInterface $customerTaskRepository,
-        TaskEntityManagerInterface $customerTaskEntityManager,
+        TaskRepositoryInterface $taskRepository,
+        TaskEntityManagerInterface $taskEntityManager,
     ) {
         $this->customerFacade = $customerFacade;
-        $this->customerTaskRepository = $customerTaskRepository;
-        $this->customerTaskEntityManager = $customerTaskEntityManager;
+        $this->taskRepository = $taskRepository;
+        $this->taskEntityManager = $taskEntityManager;
     }
 
     /**
@@ -50,21 +50,21 @@ class TaskAssigner implements TaskAssignerInterface
      */
     public function assign(string $customerEmail, int $idTask): TaskTransfer
     {
-        $customerTaskCriteriaTransfer = (new TaskCriteriaTransfer())->setTaskConditions(
+        $taskCriteriaTransfer = (new TaskCriteriaTransfer())->setTaskConditions(
             (new TaskConditionsTransfer())->setIdTask($idTask),
         );
 
-        $customerTaskTransfer = $this->customerTaskRepository->findOne($customerTaskCriteriaTransfer);
+        $taskTransfer = $this->taskRepository->findOne($taskCriteriaTransfer);
 
-        if (!$customerTaskTransfer) {
+        if (!$taskTransfer) {
             throw new TaskNotFoundException();
         }
 
-        $customerTaskTransfer->setFkAssignee(
+        $taskTransfer->setFkAssignee(
             $this->getCustomerIdByEmail($customerEmail),
         );
 
-        return $this->customerTaskEntityManager->update($customerTaskTransfer);
+        return $this->taskEntityManager->update($taskTransfer);
     }
 
     /**

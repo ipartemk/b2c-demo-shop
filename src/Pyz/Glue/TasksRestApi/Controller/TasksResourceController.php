@@ -33,7 +33,7 @@ class TasksResourceController extends AbstractController
      *     },
      *     "getCollection": {
      *          "summary": [
-     *              "Retrieves all customer tasks."
+     *              "Retrieves all tasks."
      *          ],
      *          "parameters": [{
      *              "ref": "acceptLanguage"
@@ -83,7 +83,7 @@ class TasksResourceController extends AbstractController
      * @Glue({
      *     "patch": {
      *          "summary": [
-     *              "Updates customer task."
+     *              "Updates task."
      *          ],
      *          "parameters": [{
      *              "ref": "acceptLanguage"
@@ -113,7 +113,7 @@ class TasksResourceController extends AbstractController
      * @Glue({
      *     "delete": {
      *          "summary": [
-     *              "Removes customer task."
+     *              "Removes task."
      *          ],
      *          "parameters": [{
      *              "ref": "acceptLanguage"

@@ -43,20 +43,14 @@ class TaskReader implements TaskReaderInterface
     private const DEFAULT_PAGINATION_PAGE = 1;
 
     /**
-     * @uses \Pyz\Zed\Task\Persistence\TaskRepository::DEFAULT_PAGINATION_MAX_PER_PAGE
+     * @uses \Pyz\Zed\Task\TaskConfig::DEFAULT_PAGINATION_MAX_PER_PAGE
      *
      * @var int
      */
-    private const DEFAULT_PAGINATION_MAX_PER_PAGE = 10;
+    private const DEFAULT_PAGINATION_MAX_PER_PAGE = 4;
 
-    /**
-     * @var \Pyz\Client\TasksRestApi\TasksRestApiClientInterface
-     */
     private TasksRestApiClientInterface $tasksRestApiClient;
 
-    /**
-     * @var \Pyz\Glue\TasksRestApi\Processor\RestResponseBuilder\TaskRestResponseBuilderInterface
-     */
     private TaskRestResponseBuilderInterface $taskRestResponseBuilder;
 
     /**

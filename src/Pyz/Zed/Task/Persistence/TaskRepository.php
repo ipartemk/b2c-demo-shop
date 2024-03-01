@@ -13,6 +13,7 @@ use Generated\Shared\Transfer\TaskCriteriaTransfer;
 use Generated\Shared\Transfer\TaskTransfer;
 use Orm\Zed\Task\Persistence\MeuTaskQuery;
 use Propel\Runtime\ActiveQuery\Criteria;
+use Pyz\Zed\Task\TaskConfig;
 use Spryker\Zed\Kernel\Persistence\AbstractRepository;
 use Spryker\Zed\PropelOrm\Business\Runtime\ActiveQuery\Criteria as SprykerCriteria;
 
@@ -21,11 +22,6 @@ use Spryker\Zed\PropelOrm\Business\Runtime\ActiveQuery\Criteria as SprykerCriter
  */
 class TaskRepository extends AbstractRepository implements TaskRepositoryInterface
 {
-    /**
-     * @var int
-     */
-    private const DEFAULT_PAGINATION_MAX_PER_PAGE = 10;
-
     /**
      * @param \Generated\Shared\Transfer\TaskCriteriaTransfer $taskCriteriaTransfer
      *
@@ -120,9 +116,9 @@ class TaskRepository extends AbstractRepository implements TaskRepositoryInterfa
 
         if ($taskCriteriaTransfer->getTaskConditions()->getTag()) {
             $taskQuery->useMeuTaskTagRelationQuery()
-                ->useMeuTaskTagQuery()
-                ->filterByTag($taskCriteriaTransfer->getTaskConditions()->getTag())
-                ->endUse()
+                    ->useMeuTaskTagQuery()
+                        ->filterByTag($taskCriteriaTransfer->getTaskConditions()->getTag())
+                    ->endUse()
                 ->endUse();
         }
 
@@ -148,7 +144,7 @@ class TaskRepository extends AbstractRepository implements TaskRepositoryInterfa
 
         $paginationTransfer = $taskCriteriaTransfer->getPagination();
         if (!$paginationTransfer->getMaxPerPage()) {
-            $paginationTransfer->setMaxPerPage(self::DEFAULT_PAGINATION_MAX_PER_PAGE);
+            $paginationTransfer->setMaxPerPage(TaskConfig::DEFAULT_PAGINATION_MAX_PER_PAGE);
         }
 
         $paginationModel = $taskQuery->paginate(
