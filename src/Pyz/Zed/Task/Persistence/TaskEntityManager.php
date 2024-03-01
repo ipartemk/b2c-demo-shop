@@ -51,6 +51,10 @@ class TaskEntityManager extends AbstractEntityManager implements TaskEntityManag
             ->filterByIdTask($taskTransfer->getIdTaskOrFail())
             ->findOne();
 
+        if ($taskEntity === null) {
+            return $taskTransfer;
+        }
+
         $taskEntity->fromArray($taskTransfer->toArray());
         $taskEntity->save();
 
