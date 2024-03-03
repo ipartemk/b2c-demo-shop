@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<database xmlns="spryker:schema-01" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="zed" xsi:schemaLocation="spryker:schema-01 https://static.spryker.com/schema-01.xsd" namespace="Orm\Zed\Task\Persistence" package="src.Orm.Zed.Task.Persistence">
+
+    <table name="meu_task" idMethod="native">
+        <column name="id_task" required="true" type="INTEGER" autoIncrement="true" primaryKey="true"/>
+        <column name="fk_creator" required="true" type="INTEGER"/>
+        <column name="fk_assignee" type="INTEGER" defaultValue="NULL"/>
+        <column name="title" required="true" size="255" type="VARCHAR"/>
+        <column name="description" type="LONGVARCHAR" defaultValue="NULL"/>
+        <column name="due_date" type="DATE" defaultValue="NULL"/>
+        <column name="status" required="true" type="ENUM" valueSet="to_do,in_progress,completed,overdue" defaultValue="to_do"/>
+        <foreign-key foreignTable="spy_customer" phpName="Creator">
+            <reference foreign="id_customer" local="fk_creator"/>
+        </foreign-key>
+
+        <foreign-key foreignTable="spy_customer" phpName="Assignee">
+            <reference foreign="id_customer" local="fk_assignee"/>
+        </foreign-key>
+
+        <behavior name="timestampable"/>
+    </table>
+
+    <table name="meu_task_tag" idMethod="native">
+        <column name="id_task_tag" required="true" type="INTEGER" autoIncrement="true" primaryKey="true"/>
+        <column name="tag" required="true" size="255" type="VARCHAR"/>
+
+        <unique name="meu_task_tag-tag">
+            <unique-column name="tag"/>
+        </unique>
+    </table>
+
+    <table name="meu_task_tag_relation" idMethod="native">
+        <column name="fk_task" type="integer" primaryKey="true"/>
+        <column name="fk_task_tag" type="integer" primaryKey="true"/>
+
+        <foreign-key name="meu_task_tag_relation-fk_task" foreignTable="meu_task" onDelete="CASCADE">
+            <reference local="fk_task" foreign="id_task"/>
+        </foreign-key>
+        <foreign-key name="meu_task_tag_relation-fk_task_tag" foreignTable="meu_task_tag" onDelete="CASCADE">
+            <reference local="fk_task_tag" foreign="id_task_tag"/>
+        </foreign-key>
+    </table>
+
+</database>
